@@ -1,13 +1,14 @@
 import {
     Flex,
     Text,
-    InputGroup,
-    Input,
     Button
 } from '@chakra-ui/react';
 import { useContext } from 'react'
 import { GlobalContext } from '../context/Context'
 import axios from 'axios'
+import ContainerSection from '../components/Layouts/Container';
+import BoxSection from '../components/Layouts/Box';
+import InputComponent from '../components/Input/InputComponent';
 
 function LoginPage() {
 
@@ -33,16 +34,21 @@ function LoginPage() {
     }
 
     return (
-        <>
-
-            <InputGroup>
-                <Input
+        <ContainerSection>
+            <BoxSection>
+                <Text
+                fontFamily={'sen'}
+                fontSize={'40px'}
+                color={'purple'}
+                fontWeight={'bold'}
+                >Login</Text>
+                <InputComponent
                 values={userData.username}
                 id='username'
                 type="text"
                 placeholder={'Insira o username'}
                 onChange={(e) => {handle(e)}} />
-                <Input
+                <InputComponent
                 values={userData.password}
                 id='password'
                 type="text"
@@ -54,9 +60,8 @@ function LoginPage() {
                 onClick={(e) => {handleSubmit(e)}}>
                     Login
                 </Button>
-            </InputGroup>
-
-        </>
+            </BoxSection>
+        </ContainerSection>
     );
 }
 
