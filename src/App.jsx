@@ -1,14 +1,14 @@
 import { BrowserRouter } from 'react-router-dom';
 import HeaderComponent from './components/Header/Header';
 import FooterComponent from './components/Footer/Footer';
-import Rotas from './routes';
+import Main from './routes';
 
 function App() {
   
   return (
     <BrowserRouter>
       <HeaderComponent />
-      <Rotas />
+      <Main />
       <FooterComponent />
     </BrowserRouter>
   )

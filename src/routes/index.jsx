@@ -7,7 +7,7 @@ import Home from '../pages/Home';
 import UserData from '../pages/UserData';
 import BookStock from '../pages/BookStock';
 
-const Rotas = () => {
+const Main = () => {
     return (
         <Routes>
             <Route path='/' element={<LandingPage />} />
@@ -21,4 +21,4 @@ const Rotas = () => {
     );
 }
 
-export default Rotas;
+export default Main;
