@@ -23,6 +23,14 @@ export function GlobalProvider({children}){
 
     const [ userData, setUserData ] = useState(user)
 
+    const userSignUp = {
+        fullName: '',
+        username: '',
+        password: ''
+    }
+    
+    const [ userSignUpData, setUsetSignUpData ] = useState(userSignUp)
+
     const [ isAuth, setAuth ] = useState(false)
 
     const context = {
@@ -33,7 +41,10 @@ export function GlobalProvider({children}){
         setUserData,
         user,
         isAuth,
-        setAuth
+        setAuth,
+        userSignUp,
+        userSignUpData,
+        setUsetSignUpData
     }
 
     return (
