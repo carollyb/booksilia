@@ -58,11 +58,6 @@ function HeaderComponent() {
             {isAuth ? 
             <Flex
             gap={'16px'}>
-            <ButtonComponent>Login</ButtonComponent>
-            <ButtonComponent
-            color={'lightGray'}
-            backgroundColor={'purple'}>Sign Up</ButtonComponent></Flex> : <Flex
-            gap={'16px'}>
                 <ButtonComponent
                 color={'white'}
                 backgroundColor={'purple'}
@@ -73,7 +68,16 @@ function HeaderComponent() {
                 color={'purple'}
                 backgroundColor={'lightGray'}
                 onClick={handleLogout}>Logout</ButtonComponent>
-            </Flex>
+            </Flex> : 
+            <Flex
+            gap={'16px'}>
+            <ButtonComponent 
+            color={'purple'}
+            onClick={() => navigate('/login')}>Login</ButtonComponent>
+            <ButtonComponent
+            color={'white'}
+            backgroundColor={'purple'}
+            onClick={() => navigate('signup')} >Sign Up</ButtonComponent></Flex>
             }
         </Flex>
     </>);
