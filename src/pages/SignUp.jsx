@@ -1,25 +1,56 @@
 import {
-    Text
+    Text,
+    useToast
 } from '@chakra-ui/react';
 import ContainerSection from '../components/Layouts/Container';
 import BoxSection from '../components/Layouts/Box';
 import InputComponent from '../components/Input/InputComponent';
 import ButtonComponent from '../components/Button/ButtonComponent';
 import { GlobalContext } from '../context/Context';
-import { useContext } from 'react'
+import { useContext } from 'react';
+import axios from "axios";
 
 function SignUpPage() {
+
+    const toast = useToast();
 
     const {
         userSignUp,
         userSignUpData,
-        setUsetSignUpData
+        setUsetSignUpData,
+        setAuth
     } = useContext(GlobalContext)
 
     function handle(e) {
         const newValues = {...userSignUpData}
         newValues[e.target.id] = e.target.value;
         setUsetSignUpData(newValues)
+    }
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        try {
+            
+        const response = await axios.post('http://localhost:3001/user/', userSignUpData);
+        setUsetSignUpData(userSignUp)
+        setAuth(true)
+        console.log(response.data);
+        toast({
+            title: 'Conta criada!',
+            description: `Seja bem vinda(o), ${response.data.user_created.fullName}`,
+            status: 'success',
+            duration: 3000,
+            isClosable: true,
+        })
+        } catch (error) {
+            toast({
+                title: 'A conta não pôde ser criada',
+                description: `Preencha novamente os campos`,
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            })
+        }
     }
 
     return (
