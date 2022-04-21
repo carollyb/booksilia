@@ -51,7 +51,7 @@ function LoginPage() {
                 <InputComponent
                 values={userData.password}
                 id='password'
-                type="text"
+                type="password"
                 placeholder={'Insira a senha'}
                 onChange={(e) => {handle(e)}} />
                 <Button
