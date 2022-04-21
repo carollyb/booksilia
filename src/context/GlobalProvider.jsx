@@ -7,10 +7,10 @@ export function GlobalProvider({children}){
         title: '',
         author: '',
         language: '',
-        num_pages: 0,
-        publication_date: new Date(),
+        num_pages: '',
+        publication_date: '',
         publisher: '',
-        price: 0,
+        price: '',
         userId: localStorage.getItem('user_id')
     }
 
@@ -33,6 +33,8 @@ export function GlobalProvider({children}){
 
     const [ isAuth, setAuth ] = useState(false)
 
+    const [ isEditing, setEditing ] = useState(false)
+
     const context = {
         book,
         bookData,
@@ -44,7 +46,9 @@ export function GlobalProvider({children}){
         setAuth,
         userSignUp,
         userSignUpData,
-        setUsetSignUpData
+        setUsetSignUpData,
+        isEditing,
+        setEditing
     }
 
     return (
