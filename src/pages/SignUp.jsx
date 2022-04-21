@@ -9,9 +9,11 @@ import ButtonComponent from '../components/Button/ButtonComponent';
 import { GlobalContext } from '../context/Context';
 import { useContext } from 'react';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom'
 
 function SignUpPage() {
 
+    const navigate = useNavigate()
     const toast = useToast();
 
     const {
@@ -42,6 +44,7 @@ function SignUpPage() {
             duration: 3000,
             isClosable: true,
         })
+        navigate('/')
         } catch (error) {
             toast({
                 title: 'A conta não pôde ser criada',
