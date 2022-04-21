@@ -1,26 +1,27 @@
 import {
     Text,
+    Flex,
     useToast
 } from "@chakra-ui/react"
 import HeadingTitle from "../components/HeadingTitle/HeadingTitle";
 import BoxSection from "../components/Layouts/Box";
 import ContainerSection from "../components/Layouts/Container";
 import InputComponent from "../components/Input/InputComponent";
+import ButtonComponent from "../components/Button/ButtonComponent";
+import TableComponent from "../components/Table/Table";
 import { GlobalContext } from '../context/Context';
 import { useContext } from 'react';
 import axios from 'axios'
-import ButtonComponent from "../components/Button/ButtonComponent";
 
 function BookStock() {
 
-    const { book, bookData, setBookData, isEditing, setEditing } = useContext(GlobalContext);
+    const { book, bookData, setBookData, isEditing, setEditing, setUpdateTable } = useContext(GlobalContext);
 
     const toast = useToast();
 
     function handle(e) {
         const newValues = {...bookData}
         newValues[e.target.id] = e.target.value;
-        console.log(bookData);
         setBookData(newValues)
     }
 
@@ -39,7 +40,9 @@ function BookStock() {
             status: 'success',
             duration: 3000,
             isClosable: true,
-        })
+        });
+        setUpdateTable((x) => {return x + 1})
+        setBookData(book)
         } catch (error) {
             toast({
                 title: 'O registro não pôde ser criado',
@@ -52,7 +55,11 @@ function BookStock() {
     }
 
     return (
-        <ContainerSection>
+        <Flex
+        direction={'column'}
+        justify={'flex-start'}
+        align={'center'}>
+            <ContainerSection>
             <BoxSection>
                 {isEditing ? <HeadingTitle
                 >Edite um livro</HeadingTitle> : 
@@ -61,7 +68,7 @@ function BookStock() {
                 <Text
                 fontFamily={'sen'}
                 color={'lightGray'}
-                fontSize={'16px'}
+                marginBottom={'50px'}
                 >
                     para registrar no banco de dados
                 </Text>
@@ -113,8 +120,9 @@ function BookStock() {
                 onClick={(e) => {handleSubmit(e)}}
                 >Registrar</ButtonComponent>
             </BoxSection>
-            
         </ContainerSection>
+        <TableComponent />
+        </Flex>
     );
 }
 

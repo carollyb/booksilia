@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react";
-import GlobalContext from "./Context"
+import GlobalContext from "./Context";
+import axios from 'axios'
 
 export function GlobalProvider({children}){
 
+    const url = 'http://localhost:3001';
+
+    //registro livro
     const book = {
         title: '',
         author: '',
@@ -16,6 +20,7 @@ export function GlobalProvider({children}){
 
     const [ bookData, setBookData ] = useState(book);
 
+    //login usuário
     const user = {
         username: '',
         password: ''
@@ -23,6 +28,7 @@ export function GlobalProvider({children}){
 
     const [ userData, setUserData ] = useState(user)
 
+    //cadastro usuário
     const userSignUp = {
         fullName: '',
         username: '',
@@ -31,11 +37,34 @@ export function GlobalProvider({children}){
     
     const [ userSignUpData, setUsetSignUpData ] = useState(userSignUp)
 
-    const [ isAuth, setAuth ] = useState(false)
+    //checar autenticação
+    const authStatus = localStorage.getItem('token')
+    const [ isAuth, setAuth ] = useState(!!authStatus)
 
-    const [ isEditing, setEditing ] = useState(false)
+    //editar livro
+    const [ isEditingBook, setEditingBook ] = useState(false);
+
+    //mostrar tabela
+    const [ rows, setRows ] = useState([]);
+
+    const [ updateTable, setUpdateTable ] = useState(0)
+
+const getData = async (url) => {
+    try {
+        const response = await axios.get(`${url}/book`);
+        const results = response.data.books;
+        setRows(results)
+    } catch (error) {
+        console.log(`${error.message}`);
+    }
+}
+
+    useEffect(() => {
+        getData(url)
+    }, [updateTable])
 
     const context = {
+        url,
         book,
         bookData,
         setBookData,
@@ -47,8 +76,12 @@ export function GlobalProvider({children}){
         userSignUp,
         userSignUpData,
         setUsetSignUpData,
-        isEditing,
-        setEditing
+        isEditingBook,
+        setEditingBook,
+        rows,
+        setRows,
+        updateTable,
+        setUpdateTable
     }
 
     return (
