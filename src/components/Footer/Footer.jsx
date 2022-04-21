@@ -1,7 +1,11 @@
+import { Box } from '@chakra-ui/react';
+
 function FooterComponent() {
     return (
         <>
-        <h1>footer</h1>
+        <Box>
+            <h1>footer</h1>
+        </Box>
         </>
     );
 }
