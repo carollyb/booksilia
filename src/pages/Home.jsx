@@ -1,27 +1,68 @@
 import {
+    Flex,
     Box,
-    Center,
     Text,
+    Button
 } from '@chakra-ui/react';
+import Container from '../components/Layouts/Container';
+
 
 function Home() {
+
     return (
-        <Center py={6}>
+        <Container>
+        <Flex display="flex" alignItems="center">
+            <Flex alignItems="center">
+                <Box
+                h={'350px'}
+                w={'500px'}
+                bg={'purple.100'}
+                boxShadow={'2xl'}
+                rounded={'md'}
+                p={6}
+                overflow={'hidden'}>
+                    <Text 
+                    fontFamily={'sen'}
+                    fontSize={'30px'}
+                    color={'purple'}
+                    fontWeight={'bold'}>
+                        Bem-vindo,
+                    </Text>
+                    <Button
+                backgroundColor={'purple'}
+                color={'white'}
+                onClick={(e) => {handleSubmit(e)}}>
+                    Acessar o estoque
+                </Button>
+                </Box>
+            </Flex>
+            <Flex>
             <Box
-            maxW={'445px'}
-            h={'210px'}
-            w={'full'}
-            bg={'purple.100'}
-            boxShadow={'2xl'}
-            rounded={'md'}
-            p={6}
-            overflow={'hidden'}>
-                
-                <Text color={'gray.500'}>
-                    Bem-vindo
-                </Text>
-            </Box>
-        </Center>
+                h={'350px'}
+                w={'200px'}
+                bg={'purple.100'}
+                boxShadow={'2xl'}
+                rounded={'md'}
+                p={6}
+                overflow={'hidden'}>
+                    <Text 
+                    fontFamily={'sen'}
+                    fontSize={'30px'}
+                    color={'purple'}
+                    fontWeight={'bold'}>
+                        Nome:
+                        Email:
+                    </Text>
+                    <Button
+                backgroundColor={'purple'}
+                color={'white'}
+                onClick={(e) => {handleSubmit(e)}}>
+                    Atualizar Dados
+                </Button>
+                </Box>
+            </Flex>
+        </Flex>
+        </Container>
     );
 }
 
