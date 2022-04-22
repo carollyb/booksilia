@@ -5,15 +5,28 @@ import {
     Tr,
     Th,
     Tbody,
-    Td,
-    useToast
+    Td
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import GlobalContext from '../../context/Context';
+import ButtonComponent from '../Button/ButtonComponent'
 
 function TableComponent() {
 
-    const { rows } = useContext(GlobalContext)
+    const { rows, setEditingBook } = useContext(GlobalContext);
+
+    function handleSelect(id) {
+        localStorage.setItem('book_id', id)
+        setEditingBook(true);
+        window.scrollTo({
+            top: 100,
+            behavior: 'smooth'
+        })
+    }
+
+    function handleDelete(e) {
+        console.log("Deletar livro");
+    }
     return (
     <Flex>
         <Table variant='striped' colorScheme='gray' >
@@ -45,6 +58,18 @@ function TableComponent() {
                             <Td>{item.publisher}</Td>
                             <Td>{item.price}</Td>
                             <Td>{item.userId}</Td>
+                            <Td>
+                                <ButtonComponent
+                                color={'white'}
+                                backgroundColor={'purple'}
+                                onClick={() => {handleSelect(item.id)}}>Editar</ButtonComponent>
+                            </Td>
+                            <Td>
+                            <ButtonComponent
+                                color={'white'}
+                                backgroundColor={'darkRed'}
+                                onClick={(e) => {handleDelete(e)}}>Deletar</ButtonComponent>
+                            </Td>
                         </Tr>
                     )
                 })}

@@ -15,7 +15,7 @@ import axios from 'axios'
 
 function BookStock() {
 
-    const { book, bookData, setBookData, isEditing, setEditing, setUpdateTable } = useContext(GlobalContext);
+    const { url, book, bookData, setBookData, isEditingBook, setUpdateTable, setEditingBook } = useContext(GlobalContext);
 
     const toast = useToast();
 
@@ -25,9 +25,11 @@ function BookStock() {
         setBookData(newValues)
     }
 
+    const token = localStorage.getItem('token')
+
     async function handleSubmit(e) {
         e.preventDefault();
-        const token = localStorage.getItem('token')
+        
         try {
         const response = await axios.post('http://localhost:3001/book/', bookData, {
             headers: {
@@ -54,6 +56,29 @@ function BookStock() {
         }
     }
 
+    async function handleEdit(e) {
+        e.preventDefault();
+        const id = localStorage.getItem('book_id')
+        try {
+            const response = await axios.put(`${url}/book/${id}`, bookData, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            toast({
+                title: `Livro '${response.data.updated.title}' atualizado!`,
+                description: `O registro foi atualizado no banco de dados`,
+                status: 'success',
+                duration: 3000,
+                isClosable: true,
+            });
+            setUpdateTable((x) => {return x + 1})
+            setBookData(book)
+        } catch (error) {
+            console.log(`${error}`);
+        }
+    }
+
     return (
         <Flex
         direction={'column'}
@@ -61,17 +86,17 @@ function BookStock() {
         align={'center'}>
             <ContainerSection>
             <BoxSection>
-                {isEditing ? <HeadingTitle
+                {isEditingBook ? <HeadingTitle
                 >Edite um livro</HeadingTitle> : 
                 <HeadingTitle
                 >Cadastre um livro</HeadingTitle>}
-                <Text
+                {!isEditingBook && <Text
                 fontFamily={'sen'}
                 color={'lightGray'}
                 marginBottom={'50px'}
                 >
                     para registrar no banco de dados
-                </Text>
+                </Text>}
                 <InputComponent
                 values={bookData.title}
                 id='title'
@@ -114,11 +139,26 @@ function BookStock() {
                 type='number'
                 placeholder={'Preço'}
                 onChange={(e) => {handle(e)}} ></InputComponent>
+                <Flex>
+                {isEditingBook ? <Flex gap={'10px'}>
+                    <ButtonComponent
+                color={'white'}
+                backgroundColor={'purple'}
+                onClick={(e) => {handleEdit(e)}}
+                >Editar</ButtonComponent>
+                <ButtonComponent
+                color={'white'}
+                backgroundColor={'lightGray'}
+                onClick={() => {setEditingBook(false)}}
+                >Cancelar</ButtonComponent>
+                </Flex>
+                :
                 <ButtonComponent
                 color={'white'}
                 backgroundColor={'purple'}
                 onClick={(e) => {handleSubmit(e)}}
-                >Registrar</ButtonComponent>
+                >Registrar</ButtonComponent>}
+                </Flex>
             </BoxSection>
         </ContainerSection>
         <TableComponent />
