@@ -8,7 +8,7 @@ import {
 function BoxSection({children}) {
     return (
         <Flex 
-        w={{base: '200px', md: '260px', lg: '582px'}}
+        w={{base: '200px', md: '260px', lg: '722px'}}
         p={'36px 150px 60px 150px'}
         gap={'28px'}
         boxShadow={'lg'}
