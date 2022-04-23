@@ -6,6 +6,7 @@ import ContainerSection from '../components/Layouts/Container';
 import BoxSection from '../components/Layouts/Box';
 import InputComponent from '../components/Input/InputComponent';
 import ButtonComponent from '../components/Button/ButtonComponent';
+import HeadingTitle from '../components/HeadingTitle/HeadingTitle';
 import { GlobalContext } from '../context/Context';
 import { useContext } from 'react';
 import axios from "axios";
@@ -17,6 +18,7 @@ function SignUpPage() {
     const toast = useToast();
 
     const {
+        url,
         userSignUp,
         userSignUpData,
         setUsetSignUpData,
@@ -33,7 +35,7 @@ function SignUpPage() {
         e.preventDefault();
         try {
             
-        const response = await axios.post('http://localhost:3001/user/', userSignUpData);
+        const response = await axios.post(`${url}/user`, userSignUpData);
         setUsetSignUpData(userSignUp)
         setAuth(true)
         console.log(response.data);
@@ -59,12 +61,8 @@ function SignUpPage() {
     return (
         <ContainerSection>
             <BoxSection>
-            <Text
-            fontFamily={'sen'}
-            fontSize={'40px'}
-            color={'purple'}
-            fontWeight={'bold'}
-            >Cadastre-se</Text>
+            <HeadingTitle
+            >Cadastre-se</HeadingTitle>
             <Text
             fontFamily={'sen'}
             color={'lightGray'}
