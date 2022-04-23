@@ -1,7 +1,8 @@
 import {
     Flex,
     Text,
-    Button
+    Button,
+    useToast
 } from '@chakra-ui/react';
 import { useContext } from 'react'
 import { GlobalContext } from '../context/Context'
@@ -9,10 +10,13 @@ import axios from 'axios'
 import ContainerSection from '../components/Layouts/Container';
 import BoxSection from '../components/Layouts/Box';
 import InputComponent from '../components/Input/InputComponent';
+import HeadingTitle from '../components/HeadingTitle/HeadingTitle';
 
 function LoginPage() {
 
-    const { 
+    const toast = useToast()
+    const {
+        url,
         userData,
         setUserData,
         user,
@@ -26,22 +30,32 @@ function LoginPage() {
     
     async function handleSubmit(e) {
         e.preventDefault();
-        const response = await axios.post('http://localhost:3001/login', userData);
+        const response = await axios.post(`${url}/login`, userData);
         setUserData(user)
         localStorage.setItem('token', response.data.token)
+        localStorage.setItem('name', response.data.name)
         localStorage.setItem('user_id', response.data.user_id)
         setAuth(true)
+        const get_name = localStorage.getItem('name')
+        const [ firstName, ] = get_name.split(" ")
+        toast({
+            title: `Seja bem vindo, ${firstName}!`,
+            description: `Você agora tem acesso a todas as funções do sistema`,
+            status: 'success',
+            duration: 3000,
+            isClosable: true,
+            });
     }
 
     return (
         <ContainerSection>
             <BoxSection>
-                <Text
+                <HeadingTitle
                 fontFamily={'sen'}
                 fontSize={'40px'}
                 color={'purple'}
                 fontWeight={'bold'}
-                >Login</Text>
+                >Login</HeadingTitle>
                 <InputComponent
                 values={userData.username}
                 id='username'
