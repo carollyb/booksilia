@@ -5,15 +5,18 @@ import {
     Tr,
     Th,
     Tbody,
-    Td
+    Td,
+    useToast
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import GlobalContext from '../../context/Context';
-import ButtonComponent from '../Button/ButtonComponent'
+import ButtonComponent from '../Button/ButtonComponent';
+import axios from 'axios'
 
 function TableComponent() {
 
-    const { rows, setEditingBook } = useContext(GlobalContext);
+    const { url, rows, setEditingBook, setUpdateTable } = useContext(GlobalContext);
+    const toast = useToast();
 
     function handleSelect(id) {
         localStorage.setItem('book_id', id)
@@ -24,11 +27,39 @@ function TableComponent() {
         })
     }
 
-    function handleDelete(e) {
-        console.log("Deletar livro");
+    async function handleDelete(id) {
+        let confirmation = window.confirm("Você realmente quer deletar este livro?")
+        const token = localStorage.getItem('token')
+        if(confirmation){
+            try {
+                let response = await axios.delete(`${url}/book/${id}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
+                
+                toast({
+                title: `Livro deletado!`,
+                description: `O registro foi deletado do banco de dados`,
+                status: 'success',
+                duration: 3000,
+                isClosable: true,
+                });
+                setUpdateTable((x) => {return x + 1})
+            } catch (error) {
+                toast({
+                    title: `Livro não pôde ser deletado!`,
+                    description: `Cheque as informações e tente novamente`,
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                    });
+            }
+        }
     }
     return (
-    <Flex>
+    <Flex
+    p={'30px'}>
         <Table variant='striped' colorScheme='gray' >
             <Thead>
                 <Tr>
@@ -68,7 +99,7 @@ function TableComponent() {
                             <ButtonComponent
                                 color={'white'}
                                 backgroundColor={'darkRed'}
-                                onClick={(e) => {handleDelete(e)}}>Deletar</ButtonComponent>
+                                onClick={() => {handleDelete(item.id)}}>Deletar</ButtonComponent>
                             </Td>
                         </Tr>
                     )
