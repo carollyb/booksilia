@@ -45,14 +45,6 @@ function Home() {
                 rounded={'md'}
                 p={6}
                 overflow={'hidden'}>
-                    <Text 
-                    fontFamily={'sen'}
-                    fontSize={'30px'}
-                    color={'purple'}
-                    fontWeight={'bold'}>
-                        Nome:
-                        Email:
-                    </Text>
                     <Button
                 backgroundColor={'purple'}
                 color={'white'}
