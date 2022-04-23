@@ -1,18 +1,28 @@
 import {
     Flex,
     Text,
-    Button
+    Button,
+    InputGroup,
+    InputRightElement,
+    useToast
 } from '@chakra-ui/react';
-import { useContext } from 'react'
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { GlobalContext } from '../context/Context'
 import axios from 'axios'
 import ContainerSection from '../components/Layouts/Container';
 import BoxSection from '../components/Layouts/Box';
 import InputComponent from '../components/Input/InputComponent';
+import HeadingTitle from '../components/HeadingTitle/HeadingTitle';
 
 function LoginPage() {
 
-    const { 
+    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate()
+    const toast = useToast()
+    const {
+        url,
         userData,
         setUserData,
         user,
@@ -26,34 +36,52 @@ function LoginPage() {
     
     async function handleSubmit(e) {
         e.preventDefault();
-        const response = await axios.post('http://localhost:3001/login', userData);
+        const response = await axios.post(`${url}/login`, userData);
         setUserData(user)
         localStorage.setItem('token', response.data.token)
+        localStorage.setItem('name', response.data.name)
         localStorage.setItem('user_id', response.data.user_id)
         setAuth(true)
+        const get_name = localStorage.getItem('name')
+        const [ firstName, ] = get_name.split(" ")
+        navigate('/home')
+        toast({
+            title: `Seja bem vindo, ${firstName}!`,
+            description: `Você agora tem acesso a todas as funções do sistema`,
+            status: 'success',
+            duration: 3000,
+            isClosable: true,
+            });
     }
 
     return (
         <ContainerSection>
             <BoxSection>
-                <Text
-                fontFamily={'sen'}
-                fontSize={'40px'}
-                color={'purple'}
-                fontWeight={'bold'}
-                >Login</Text>
+                <HeadingTitle
+                >Login</HeadingTitle>
                 <InputComponent
                 values={userData.username}
                 id='username'
                 type="text"
                 placeholder={'Insira o username'}
                 onChange={(e) => {handle(e)}} />
-                <InputComponent
-                values={userData.password}
-                id='password'
-                type="password"
-                placeholder={'Insira a senha'}
-                onChange={(e) => {handle(e)}} />
+                <InputGroup>
+                    <InputComponent
+                    values={userData.password}
+                    id='password'
+                    type={showPassword ? 'text' : 'password'}
+                    placeholder={'Insira a senha'}
+                    onChange={(e) => {handle(e)}} />
+                    <InputRightElement h={'full'}>
+                        <Button
+                            variant={'ghost'}
+                            onClick={() =>
+                                setShowPassword((showPassword) => !showPassword)
+                            }>
+                            {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                        </Button>
+                    </InputRightElement>
+                </InputGroup>
                 <Button
                 backgroundColor={'purple'}
                 color={'white'}
