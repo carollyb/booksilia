@@ -1,6 +1,6 @@
 import { Button } from '@chakra-ui/react';
 
-function ButtonComponent({children, color, backgroundColor, onClick}) {
+function ButtonComponent({children, color, backgroundColor, onClick, gap}) {
     return (
         <Button
         fontFamily={'sen'}
@@ -9,6 +9,7 @@ function ButtonComponent({children, color, backgroundColor, onClick}) {
         color={color}
         backgroundColor={backgroundColor}
         onClick={onClick}
+        gap={gap}
         h={'47px'}>
             {children}
         </Button>

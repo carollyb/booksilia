@@ -25,7 +25,8 @@ function CatalogPage() {
                         <BookCard
                     key={key}
                     title={item.title}
-                    author={item.author}></BookCard>
+                    author={item.author}
+                    price={item.price}></BookCard>
                     )
                 })}
                 
