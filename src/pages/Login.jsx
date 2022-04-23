@@ -2,9 +2,13 @@ import {
     Flex,
     Text,
     Button,
+    InputGroup,
+    InputRightElement,
     useToast
 } from '@chakra-ui/react';
-import { useContext } from 'react'
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { GlobalContext } from '../context/Context'
 import axios from 'axios'
 import ContainerSection from '../components/Layouts/Container';
@@ -14,6 +18,8 @@ import HeadingTitle from '../components/HeadingTitle/HeadingTitle';
 
 function LoginPage() {
 
+    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate()
     const toast = useToast()
     const {
         url,
@@ -38,6 +44,7 @@ function LoginPage() {
         setAuth(true)
         const get_name = localStorage.getItem('name')
         const [ firstName, ] = get_name.split(" ")
+        navigate('/home')
         toast({
             title: `Seja bem vindo, ${firstName}!`,
             description: `Você agora tem acesso a todas as funções do sistema`,
@@ -51,10 +58,6 @@ function LoginPage() {
         <ContainerSection>
             <BoxSection>
                 <HeadingTitle
-                fontFamily={'sen'}
-                fontSize={'40px'}
-                color={'purple'}
-                fontWeight={'bold'}
                 >Login</HeadingTitle>
                 <InputComponent
                 values={userData.username}
@@ -62,12 +65,23 @@ function LoginPage() {
                 type="text"
                 placeholder={'Insira o username'}
                 onChange={(e) => {handle(e)}} />
-                <InputComponent
-                values={userData.password}
-                id='password'
-                type="password"
-                placeholder={'Insira a senha'}
-                onChange={(e) => {handle(e)}} />
+                <InputGroup>
+                    <InputComponent
+                    values={userData.password}
+                    id='password'
+                    type={showPassword ? 'text' : 'password'}
+                    placeholder={'Insira a senha'}
+                    onChange={(e) => {handle(e)}} />
+                    <InputRightElement h={'full'}>
+                        <Button
+                            variant={'ghost'}
+                            onClick={() =>
+                                setShowPassword((showPassword) => !showPassword)
+                            }>
+                            {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                        </Button>
+                    </InputRightElement>
+                </InputGroup>
                 <Button
                 backgroundColor={'purple'}
                 color={'white'}
