@@ -4,7 +4,7 @@ import axios from 'axios'
 
 export function GlobalProvider({children}){
 
-    const url = 'http://localhost:3001';
+    const url = 'https://api-bookstore-mod5.herokuapp.com';
 
     //registro livro
     const book = {
