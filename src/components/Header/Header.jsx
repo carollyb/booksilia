@@ -5,21 +5,52 @@ import {
     InputRightElement,
     IconButton,
     Input,
-    Text
+    Text,
+    useToast
 } from '@chakra-ui/react';
 import ButtonComponent from '../Button/ButtonComponent';
 import { GlobalContext } from '../../context/Context';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { FaUser, FaSearch } from "react-icons/fa";
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom';
+import axios from "axios"
 
 function HeaderComponent() {
-    const { isAuth, setAuth } = useContext(GlobalContext)
+    const { url, isAuth, setAuth, searchRows, setSearchRows } = useContext(GlobalContext)
+
+    const [ searchTitle, setSearchTitle ] = useState("");
+    const toast = useToast();
+
     const navigate = useNavigate()
+
     function handleLogout() {
         setAuth(false)
         localStorage.removeItem('user_id');
         localStorage.removeItem('token');
+    }
+
+    function handle(e) {
+        const titleValue = e.target.value
+        setSearchTitle(titleValue)
+    }
+
+    async function handleClick(e) {
+        e.preventDefault()
+        try {
+            const response = await axios.get(`${url}/book/${searchTitle}`)
+            setSearchRows(response.data.results)
+            navigate('/book')
+            setSearchTitle("")
+            
+        } catch (error) {
+            toast({
+                title: 'Não encontramos este livro! :(',
+                description: `Preencha novamente o título`,
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            })
+        }
     }
     return (
     <>
@@ -36,6 +67,7 @@ function HeaderComponent() {
             
             <InputGroup h={'47px'} w={{base: '200px', md: '260px', lg: '582px'}}>
                 <Input
+                value={searchTitle}
                 type={'text'}
                 w={{base: '200px', md: '260px', lg: '582px'}}
                 h={'47px'}
@@ -43,16 +75,17 @@ function HeaderComponent() {
                 borderRadius={'10px'}
                 fontFamily={'sen'}
                 placeholder={'Procure por um título'}
+                onChange={(e) => handle(e)}
                 _focus={{
                     boxShadow: 'md',
                     border: 'solid',
                     borderColor: 'purple'
                 }} />
-                <InputRightElement m={'2px 2px auto auto'} size={'md'}>
+                <InputRightElement h={'full'}>
                     <IconButton
-                    onClick={() => navigate('/book')}
-                    m={'2px 2px auto auto'} size={'md'}
-                    icon={<FaSearch color={'lightGray'} size='1.5em' />} />
+                    variant={'ghost'}
+                    onClick={(e) => handleClick(e)}
+                    icon={<FaSearch color={'lightGray'} size='1em' />} />
                 </InputRightElement>  
             </InputGroup>
             {isAuth ? 
