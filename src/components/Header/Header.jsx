@@ -5,7 +5,8 @@ import {
     InputRightElement,
     IconButton,
     Input,
-    Text
+    Text,
+    useToast
 } from '@chakra-ui/react';
 import ButtonComponent from '../Button/ButtonComponent';
 import { GlobalContext } from '../../context/Context';
@@ -15,9 +16,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from "axios"
 
 function HeaderComponent() {
-    const { url, isAuth, setAuth } = useContext(GlobalContext)
+    const { url, isAuth, setAuth, searchRows, setSearchRows } = useContext(GlobalContext)
 
-    const [ searchTitle, setSearchTitle ] = useState("")
+    const [ searchTitle, setSearchTitle ] = useState("");
+    const toast = useToast();
 
     const navigate = useNavigate()
 
@@ -36,10 +38,18 @@ function HeaderComponent() {
         e.preventDefault()
         try {
             const response = await axios.get(`${url}/book/${searchTitle}`)
+            setSearchRows(response.data.results)
+            navigate('/book')
+            setSearchTitle("")
             
-        //navigate('/book')
         } catch (error) {
-            
+            toast({
+                title: 'Não encontramos este livro! :(',
+                description: `Preencha novamente o título`,
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            })
         }
     }
     return (
@@ -73,6 +83,7 @@ function HeaderComponent() {
                 }} />
                 <InputRightElement h={'full'}>
                     <IconButton
+                    variant={'ghost'}
                     onClick={(e) => handleClick(e)}
                     icon={<FaSearch color={'lightGray'} size='1em' />} />
                 </InputRightElement>  
