@@ -31,7 +31,7 @@ function BookStock() {
         e.preventDefault();
         
         try {
-        const response = await axios.post('http://localhost:3001/book/', bookData, {
+        const response = await axios.post(`${url}/book`, bookData, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
