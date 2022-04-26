@@ -41,7 +41,9 @@ export function GlobalProvider({children}){
     //mostrar tabela
     const [ searchRows, setSearchRows ] = useState([]);
 
-    const [ updateTable, setUpdateTable ] = useState(0)
+    const [ updateTable, setUpdateTable ] = useState(0);
+
+    const [ isLoading, setLoading ] = useState(false)
 
 const getData = async (url) => {
     try {
@@ -74,7 +76,9 @@ const getData = async (url) => {
         updateTable,
         setUpdateTable,
         searchRows, 
-        setSearchRows
+        setSearchRows,
+        isLoading,
+        setLoading
     }
 
     return (
