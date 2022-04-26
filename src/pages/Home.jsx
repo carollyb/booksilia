@@ -7,7 +7,7 @@ import {
     keyframes
 } from '@chakra-ui/react';
 import Container from '../components/Layouts/Container';
-import { useNavigate } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 function Home() {

@@ -19,7 +19,7 @@ import { useForm } from "react-hook-form";
 import axios from 'axios'
 import ContainerSection from '../components/Layouts/Container';
 import BoxSection from '../components/Layouts/Box';
-import InputComponent from '../components/Input/InputComponent';
+import LoadingAnimation from "../components/Loading/Loading"
 import HeadingTitle from '../components/HeadingTitle/HeadingTitle';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -34,19 +34,24 @@ function LoginPage() {
         resolver: yupResolver(schema)
     });
     const [showPassword, setShowPassword] = useState(false);
+    
     const navigate = useNavigate()
     const toast = useToast()
     const {
         url,
-        setAuth } = useContext(GlobalContext)
+        setAuth,
+        isLoading,
+        setLoading } = useContext(GlobalContext)
     
     async function onSubmit(data) {
+        setLoading(true)
         try {
             const response = await axios.post(`${url}/login`, data);
             localStorage.setItem('token', response.data.token)
             localStorage.setItem('name', response.data.name)
             localStorage.setItem('user_id', response.data.user_id)
             setAuth(true)
+            setLoading(false)
             const get_name = localStorage.getItem('name')
             const [ firstName, ] = get_name.split(" ")
             navigate('/home')
@@ -117,7 +122,8 @@ function LoginPage() {
                     type={'submit'}
                     onClick={handleSubmit(onSubmit)}>
                         Login
-                    </Button>                
+                    </Button>
+                    {isLoading && <LoadingAnimation />}                
             </BoxSection>
         </ContainerSection>
     );

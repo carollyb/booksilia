@@ -9,13 +9,23 @@ import ContainerSection from "../components/Layouts/Container";
 import InputComponent from "../components/Input/InputComponent";
 import ButtonComponent from "../components/Button/ButtonComponent";
 import TableComponent from "../components/Table/Table";
+import LoadingAnimation from "../components/Loading/Loading"
 import { GlobalContext } from '../context/Context';
 import { useContext } from 'react';
 import axios from 'axios'
 
 function BookStock() {
 
-    const { url, book, bookData, setBookData, isEditingBook, setUpdateTable, setEditingBook } = useContext(GlobalContext);
+    const { 
+        url,
+        book,
+        bookData,
+        setBookData,
+        isEditingBook,
+        setUpdateTable,
+        setEditingBook,
+        isLoading,
+        setLoading } = useContext(GlobalContext);
 
     const toast = useToast();
 
@@ -29,13 +39,14 @@ function BookStock() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        
+        setLoading(true)
         try {
         const response = await axios.post(`${url}/book`, bookData, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
         });
+        setLoading(false)
         toast({
             title: `Livro '${response.data.title}' cadastrado!`,
             description: `O registro foi criado no banco de dados`,
@@ -53,18 +64,21 @@ function BookStock() {
                 duration: 3000,
                 isClosable: true,
             })
+            setLoading(false)
         }
     }
 
     async function handleEdit(e) {
         e.preventDefault();
         const id = localStorage.getItem('book_id')
+        setLoading(true)
         try {
             const response = await axios.put(`${url}/book/${id}`, bookData, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             })
+            setLoading(false)
             toast({
                 title: `Livro '${response.data.updated.title}' atualizado!`,
                 description: `O registro foi atualizado no banco de dados`,
@@ -75,7 +89,14 @@ function BookStock() {
             setUpdateTable((x) => {return x + 1})
             setBookData(book)
         } catch (error) {
-            console.log(`${error}`);
+            setLoading(false)
+            toast({
+                title: `Não foi possível editar o livro!`,
+                description: `Preencha todos os campos e tente novamente`,
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            });
         }
     }
 
@@ -159,6 +180,7 @@ function BookStock() {
                 onClick={(e) => {handleSubmit(e)}}
                 >Registrar</ButtonComponent>}
                 </Flex>
+                {isLoading && <LoadingAnimation />}
             </BoxSection>
         </ContainerSection>
         <TableComponent />
