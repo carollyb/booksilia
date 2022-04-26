@@ -11,6 +11,8 @@ import { useNavigate } from 'react-router-dom';
 
 
 function Home() {
+    const user_fullName = localStorage.getItem('name');
+    const [ name, ] = user_fullName.split(" ");
     const size = '96px';
     const color = 'teal';
     const pulseRing = keyframes`
@@ -47,7 +49,7 @@ function Home() {
                     color={'purple'}
                     fontWeight={'bold'}
                     paddingTop={20}>
-                        Bem-vindo,
+                        Bem-vindo, {name}!
                     </Text>
                     <Button
                         fontFamily={'sen'}
@@ -103,7 +105,7 @@ function Home() {
                             fontFamily={'sen'}
                             backgroundColor={'purple'}
                             color={'white'}
-                            onClick={(e) => {handleSubmit(e)}}
+                            onClick={() => navigate('/user')}
                             >
                                 Atualizar Dados
                         </Button>
