@@ -20,14 +20,6 @@ export function GlobalProvider({children}){
 
     const [ bookData, setBookData ] = useState(book);
 
-    //login usuário
-    const user = {
-        username: '',
-        password: ''
-    }
-
-    const [ userData, setUserData ] = useState(user)
-
     //cadastro usuário
     const userSignUp = {
         fullName: '',
@@ -70,9 +62,6 @@ const getData = async (url) => {
         book,
         bookData,
         setBookData,
-        userData,
-        setUserData,
-        user,
         isAuth,
         setAuth,
         userSignUp,
