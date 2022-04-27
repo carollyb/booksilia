@@ -21,11 +21,12 @@ function FooterComponent() {
                                     fontWeight={'bold'}>Booksilia</Text>
                             </Box>
                             <Box>
-                                <Text>
+                                <Text fontFamily={'sen'}>
                                     A Booksilia é um website de sistema de livraria para controle do estoque.
                                 </Text>
                             </Box>
                             <Text
+                                fontFamily={'sen'}
                                 fontSize={'15px'}
                                 fontWeight={'bold'}>
                                 Siga-nos
@@ -42,8 +43,11 @@ function FooterComponent() {
                                 </Link>
                             </Stack>
                         </Stack>
-                        <Stack align={'flex-start'}>
-                            <Text fontWeight={'bold'}>Categorias</Text>
+                        <Stack
+                            align={'flex-start'}
+                            fontFamily={'sen'}>
+                            <Text
+                                fontWeight={'bold'}>Categorias</Text>
                             <Link href={'#'}>Ação</Link>
                             <Link href={'#'}>Aventura</Link>
                             <Link href={'#'}>Comédia</Link>
@@ -51,8 +55,11 @@ function FooterComponent() {
                             <Link href={'#'}>Direito</Link>
                             <Link href={'#'}>Drama</Link>
                         </Stack>
-                        <Stack align={'flex-start'}>
-                            <Text fontWeight={'bold'}>Categorias</Text>
+                        <Stack
+                            align={'flex-start'}
+                            fontFamily={'sen'}>
+                            <Text
+                                fontWeight={'bold'}>Categorias</Text>
                             <Link href={'#'}>Fantasia</Link>
                             <Link href={'#'}>Horror</Link>
                             <Link href={'#'}>Mistério</Link>
@@ -60,16 +67,22 @@ function FooterComponent() {
                             <Link href={'#'}>Romance</Link>
                             <Link href={'#'}>TV - Adaptações</Link>
                         </Stack>
-                        <Stack align={'flex-start'}>
-                            <Text fontWeight={'bold'}>Links</Text>
+                        <Stack
+                            align={'flex-start'}
+                            fontFamily={'sen'}>
+                            <Text
+                                fontWeight={'bold'}>Links</Text>
                             <Link href={'#'}>Sobre</Link>
                             <Link href={'#'}>Livros</Link>
                             <Link href={'#'}>Login</Link>
                             <Link href={'#'}>Sign Up</Link>
                             <Link href={'#'}>FAQ</Link>
                         </Stack>
-                        <Stack align={'flex-start'}>
-                            <Text fontWeight={'bold'}>Nossa Equipe</Text>
+                        <Stack
+                            align={'flex-start'}
+                            fontFamily={'sen'}>
+                            <Text 
+                                fontWeight={'bold'}>Nossa Equipe</Text>
                             <Link href={'https://www.linkedin.com/in/carollybarbosa/'}>Carolly B.</Link>
                             <Link href={'https://www.linkedin.com/in/priscilarossetto/'}>Priscila R.</Link>
                             <Link href={'https://www.linkedin.com/in/artur-moretti-0653111a1/'}>Artur M.</Link>
@@ -86,10 +99,12 @@ function FooterComponent() {
                     spacing={4}
                     justify={{ base: 'center', md: 'space-between' }}
                     align={{ base: 'center', md: 'center' }}
-                    color={'black'}>
+                    color={'black'}
+                    fontFamily={'sen'}>
                     <Text>© 2022 Booksilia - Web Dev FullStack - Resilia Educação</Text>
                     <Stack direction={'row'} spacing={6}>
-                        <Text fontSize={'sm'}
+                        <Text
+                            fontSize={'sm'}
                             flexDirection='unset'>
                             Feito com ♡ pelo Grupo 5
                         </Text>
