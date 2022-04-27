@@ -6,8 +6,12 @@ import SignUpPage from '../pages/SignUp';
 import Home from '../pages/Home';
 import UserData from '../pages/UserData';
 import BookStock from '../pages/BookStock';
+import { useContext } from "react"
+import { GlobalContext } from "../context/Context"
+import Erro from '../pages/Erro';
 
 const Main = () => {
+    const { isAuth } = useContext(GlobalContext)
     return (
         <Routes>
             <Route path='/' element={<LandingPage />} />
@@ -16,7 +20,7 @@ const Main = () => {
             <Route path='/signup' element={<SignUpPage />} />
             <Route path='/home' element={<Home />} />
             <Route path='/user' element={<UserData />} />
-            <Route path='/stock' element={<BookStock />} />
+            <Route path='/stock' element={isAuth ? <BookStock /> : <Erro />} />
         </Routes>
     );
 }
