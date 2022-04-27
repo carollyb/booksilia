@@ -1,21 +1,18 @@
+import Carousels from "../components/Carousels/Carousels"
+import "react-responsive-carousel/lib/styles/carousel.min.css"
 import {
-    Text,
-    Flex,
-    Image
+    Text
+    
   } from '@chakra-ui/react';
+
+
   
 function LandingPage() {
     return (
         <>
-        <Flex flex={1}
-          justify={'center'}
-          align={'center'}
-          position={'relative'}>
-        
-        <Image alt={"Box Senhor dos Aneis"} src={"https://images-submarino.b2w.io/produtos/01/00/img/3046164/7/3046164764_1GG.jpg"} />
-        <Image alt={"Duna"} src={"https://images-submarino.b2w.io/produtos/01/00/img/2903078/7/2903078765_1GG.jpg"} />
-        
-        </Flex>
+     <div>
+         <Carousels/>
+     </div>
         
         <Text color={'#6C5DDD'} align={'center'} fontSize={'36px'} marginBottom={"20px"}>
             Sobre
