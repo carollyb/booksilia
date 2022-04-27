@@ -4,7 +4,8 @@ function HeadingTitle({children}) {
     return (
         <Text
         fontFamily={'sen'}
-        fontSize={'40px'}
+        mt={{base: '50px', md: '0'}}
+        fontSize={{base: '30px', md: '40px'}}
         color={'purple'}
         fontWeight={'bold'}
         >{children}</Text>

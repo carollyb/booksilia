@@ -1,3 +1,4 @@
+import { useDisclosure } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import GlobalContext from "./Context";
 import axios from 'axios'
@@ -5,6 +6,7 @@ import axios from 'axios'
 export function GlobalProvider({children}){
 
     const url = 'https://api-bookstore-mod5.herokuapp.com';
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     //registro livro
     const book = {
@@ -78,7 +80,10 @@ const getData = async (url) => {
         searchRows, 
         setSearchRows,
         isLoading,
-        setLoading
+        setLoading,
+        isOpen,
+        onOpen,
+        onClose
     }
 
     return (
