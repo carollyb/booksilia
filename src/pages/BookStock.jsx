@@ -88,6 +88,7 @@ function BookStock() {
             });
             setUpdateTable((x) => {return x + 1})
             setBookData(book)
+            setEditingBook(false)
         } catch (error) {
             setLoading(false)
             toast({
@@ -97,6 +98,7 @@ function BookStock() {
                 duration: 3000,
                 isClosable: true,
             });
+            setEditingBook(false)
         }
     }
 

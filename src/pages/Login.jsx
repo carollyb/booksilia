@@ -41,7 +41,10 @@ function LoginPage() {
         url,
         setAuth,
         isLoading,
-        setLoading } = useContext(GlobalContext)
+        setLoading,
+        isOpen,
+        onOpen,
+        onClose } = useContext(GlobalContext)
     
     async function onSubmit(data) {
         setLoading(true)
