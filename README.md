@@ -12,7 +12,7 @@ realizar o cadastro de um livro novo e a edição ou deleção de livros já ins
 Além de conseguir efetuar a listagem de todos os livros registrados, assim como uma pesquisa rápida
 através do título.
 
-Abaixo é possível acessar o link do protótipo do projeto feito no Figma:
+É possível acessar o link do protótipo feito no Figma:
 [Proótipo do projeto](https://www.figma.com/file/XTkHiJPlZPJoyxSdPnu6Wx/Projeto---M%C3%B3dulo-5?node-id=0%3A1)
 
 ## 🏃 Iniciando o projeto
