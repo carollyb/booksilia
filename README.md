@@ -4,6 +4,7 @@
 Projeto de encerramento do módulo 5 da Resilia Educação.
 Desenvolvimento de um site de uma livraria implementado com React.js.
 A API consumida pela aplicação contém todas as funcionalidades básicas do CRUD.
+
 No projeto proposto, é possível para o usuário fazer seu cadastro no site e sem seguida 
 efetuar o login.
 Dessa forma ele será capaz de acessar o estoque de livros da livraria, onde, é possível
@@ -26,7 +27,7 @@ Abaixo é possível acessar o link do protótipo do projeto feito no Figma:
 ```npm install```
 7. Rode o comando ```npm start```
 
-## 🏃 Tecnologias Utilizdas
+## 📚 Tecnologias Utilizdas
 
 - ![image](https://user-images.githubusercontent.com/77807360/165656549-252a14bc-0e1b-468d-bf27-49357a1f37c0.png)
 - ![image](https://user-images.githubusercontent.com/77807360/165656627-cf86aa3d-ddb8-4cec-ad7f-58f7badad065.png)
