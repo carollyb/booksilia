@@ -1,39 +1,89 @@
+import { useDisclosure } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import GlobalContext from "./Context"
+import GlobalContext from "./Context";
+import axios from 'axios'
 
 export function GlobalProvider({children}){
 
+    const url = 'https://api-bookstore-mod5.herokuapp.com';
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    //registro livro
     const book = {
         title: '',
         author: '',
         language: '',
-        num_pages: 0,
-        publication_date: new Date(),
+        num_pages: '',
+        publication_date: '',
         publisher: '',
-        price: 0,
+        price: '',
         userId: localStorage.getItem('user_id')
     }
 
     const [ bookData, setBookData ] = useState(book);
 
-    const user = {
+    //cadastro usuário
+    const userSignUp = {
+        fullName: '',
         username: '',
         password: ''
     }
+    
+    const [ userSignUpData, setUsetSignUpData ] = useState(userSignUp)
 
-    const [ userData, setUserData ] = useState(user)
+    //checar autenticação
+    const authStatus = localStorage.getItem('token')
+    const [ isAuth, setAuth ] = useState(!!authStatus)
 
-    const [ isAuth, setAuth ] = useState(false)
+    //editar livro
+    const [ isEditingBook, setEditingBook ] = useState(false);
+
+    //mostrar tabela
+    const [ rows, setRows ] = useState([]);
+    //mostrar tabela
+    const [ searchRows, setSearchRows ] = useState([]);
+
+    const [ updateTable, setUpdateTable ] = useState(0);
+
+    const [ isLoading, setLoading ] = useState(false)
+
+const getData = async (url) => {
+    try {
+        const response = await axios.get(`${url}/book`);
+        const results = response.data.books;
+        setRows(results)
+    } catch (error) {
+        console.log(`${error.message}`);
+    }
+}
+
+    useEffect(() => {
+        getData(url)
+    }, [updateTable])
 
     const context = {
+        url,
         book,
         bookData,
         setBookData,
-        userData,
-        setUserData,
-        user,
         isAuth,
-        setAuth
+        setAuth,
+        userSignUp,
+        userSignUpData,
+        setUsetSignUpData,
+        isEditingBook,
+        setEditingBook,
+        rows,
+        setRows,
+        updateTable,
+        setUpdateTable,
+        searchRows, 
+        setSearchRows,
+        isLoading,
+        setLoading,
+        isOpen,
+        onOpen,
+        onClose
     }
 
     return (
