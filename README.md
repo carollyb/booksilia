@@ -11,12 +11,11 @@ A API consumida pela aplicação contém todas as funcionalidades básicas do CR
 ```cd bookstore-api```
 3. Instale as dependências com o comando:
 ```npm install```
-4. Renomeie o arquivo de ```.env.example``` para ```.env``` na pasta raiz do projeto, e coloque a conexão com o banco de dados.
-5. Digite ```npm start``` no terminal do seu VSCode para rodar a API.
-6. Depois disso, clone o projeto Booksilia em: ```$ git clone https://github.com/carollyb/booksilia.git```
-7. Instale as dependências com o comando:
+4. Digite ```npm start``` no terminal do seu VSCode para rodar a API.
+5. Depois disso, clone o projeto Booksilia em: ```$ git clone https://github.com/carollyb/booksilia.git```
+6. Instale as dependências com o comando:
 ```npm install```
-8. Rode o comando ```npm start```
+7. Rode o comando ```npm start```
 
 ## 💻 Equipe de Desenvolvedores
 
