@@ -3,8 +3,11 @@ import BoxSection from '../components/Layouts/Box';
 import HeadingTitle from '../components/HeadingTitle/HeadingTitle';
 import InputComponent from '../components/Input/InputComponent';
 import ButtonComponent from '../components/Button/ButtonComponent';
+import { useNavigate } from 'react-router-dom';
 
 function UserData() {
+    const navigate = useNavigate()
+    
     return (
         <>
         <ContainerSection>
@@ -39,7 +42,7 @@ function UserData() {
                 <ButtonComponent
                     backgroundColor={'purple'}
                     color={'white'}
-                    onClick={(e) => {handleSubmit(e)}}
+                    onClick={() => navigate('/home')}
                     >
                 Confirmar
                 </ButtonComponent>
