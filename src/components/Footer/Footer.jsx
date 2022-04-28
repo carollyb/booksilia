@@ -1,11 +1,11 @@
 import { Box, Container, Stack, Text, Link, SimpleGrid, useColorModeValue } from '@chakra-ui/react';
 import { FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
-
 function FooterComponent() {
     return (
         <>
             <Box
+            p={{md: '30px'}}
                 bg={useColorModeValue("pink.50","pink.900")}
                 color={useColorModeValue("pink.700","pink.200")}>
                 <Container as={Stack} maxW={'6x1'} py={10} color={'black'}>
@@ -48,34 +48,34 @@ function FooterComponent() {
                             fontFamily={'sen'}>
                             <Text
                                 fontWeight={'bold'}>Categorias</Text>
-                            <Link href={'#'}>Ação</Link>
-                            <Link href={'#'}>Aventura</Link>
-                            <Link href={'#'}>Comédia</Link>
-                            <Link href={'#'}>Crime</Link>
-                            <Link href={'#'}>Direito</Link>
-                            <Link href={'#'}>Drama</Link>
+                            <Link href={'/book'}>Ação</Link>
+                            <Link href={'/book'}>Aventura</Link>
+                            <Link href={'/book'}>Comédia</Link>
+                            <Link href={'/book'}>Crime</Link>
+                            <Link href={'/book'}>Direito</Link>
+                            <Link href={'/book'}>Drama</Link>
                         </Stack>
                         <Stack
                             align={'flex-start'}
                             fontFamily={'sen'}>
                             <Text
                                 fontWeight={'bold'}>Categorias</Text>
-                            <Link href={'#'}>Fantasia</Link>
-                            <Link href={'#'}>Horror</Link>
-                            <Link href={'#'}>Mistério</Link>
-                            <Link href={'#'}>Profissional</Link>
-                            <Link href={'#'}>Romance</Link>
-                            <Link href={'#'}>TV - Adaptações</Link>
+                            <Link href={'/book'}>Fantasia</Link>
+                            <Link href={'/book'}>Horror</Link>
+                            <Link href={'/book'}>Mistério</Link>
+                            <Link href={'/book'}>Profissional</Link>
+                            <Link href={'/book'}>Romance</Link>
+                            <Link href={'/book'}>TV - Adaptações</Link>
                         </Stack>
                         <Stack
                             align={'flex-start'}
                             fontFamily={'sen'}>
                             <Text
                                 fontWeight={'bold'}>Links</Text>
-                            <Link href={'#'}>Sobre</Link>
-                            <Link href={'#'}>Livros</Link>
-                            <Link href={'#'}>Login</Link>
-                            <Link href={'#'}>Sign Up</Link>
+                            <Link href={'/'}>Sobre</Link>
+                            <Link href={'/book'}>Livros</Link>
+                            <Link href={'/login'}>Login</Link>
+                            <Link href={'/signup'}>Sign Up</Link>
                             <Link href={'#'}>FAQ</Link>
                         </Stack>
                         <Stack
@@ -86,8 +86,6 @@ function FooterComponent() {
                             <Link href={'https://www.linkedin.com/in/carollybarbosa/'}>Carolly B.</Link>
                             <Link href={'https://www.linkedin.com/in/priscilarossetto/'}>Priscila R.</Link>
                             <Link href={'https://www.linkedin.com/in/artur-moretti-0653111a1/'}>Artur M.</Link>
-                            <Link href={'https://www.linkedin.com/in/eric-rodrigues-de-oliveira-b32732210/'}>Eric O.</Link>
-                            <Link href={'https://www.linkedin.com/in/tiago-silva-4a9ba2154/'}>Tiago S.</Link>
                         </Stack>
                     </SimpleGrid>
                 </Container>
