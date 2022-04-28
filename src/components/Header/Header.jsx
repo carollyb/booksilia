@@ -93,7 +93,7 @@ function HeaderComponent() {
             direction={{base: isOpen ? 'column' : 'row', md: 'row'}}
             justify={{base: 'flex-start', md: 'space-between'}}
             align={{base: 'flex-start', md: 'center'}}
-            gap={{base: isOpen ? '20px': '40px', md: '100px'}}>
+            gap={{base: isOpen ? '20px': '30px', md: '50px'}}>
                 <InputGroup
                 display={{base: isOpen? 'flex' : 'none', md: 'flex'}}
                 h={'47px'} 

@@ -18,9 +18,9 @@ const Main = () => {
             <Route path='/login' element={<LoginPage />} />
             <Route path='/book' element={<CatalogPage />} />
             <Route path='/signup' element={<SignUpPage />} />
-            <Route path='/home' element={<Home />} />
+            <Route path='/home' element={ isAuth ? <Home /> : <Erro />} />
             <Route path='/user' element={<UserData />} />
-            <Route path='/stock' element={isAuth ? <BookStock /> : <Erro />} />
+            <Route path='/stock' element={ isAuth ? <BookStock /> : <Erro />} />
         </Routes>
     );
 }
