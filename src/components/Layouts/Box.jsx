@@ -1,8 +1,5 @@
 import {
     Flex,
-    Text,
-    Input,
-    Button,
 } from '@chakra-ui/react'
 
 function BoxSection({children}) {

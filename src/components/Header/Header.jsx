@@ -30,6 +30,7 @@ function HeaderComponent() {
         setAuth(false)
         localStorage.removeItem('user_id');
         localStorage.removeItem('token');
+        localStorage.removeItem('name');
     }
 
     function handle(e) {
@@ -53,6 +54,7 @@ function HeaderComponent() {
                 duration: 3000,
                 isClosable: true,
             })
+            setSearchTitle("")
         }
     }
     return (
