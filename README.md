@@ -26,15 +26,32 @@ O fluxo de trabalho no desenvolvimento desta aplicação seguiu o modelo GitFlow
 ```npm install```
 7. Rode o comando ```npm start```
 
+## 👩🏻‍💻 User Story
+1. O usuário pode fazer o cadastro, entrando com os inputs de nome completo, username e senha
+2. O usuário pode fazer o login com o username e a senha
+3. O usuário, após login, pode acessar a página home
+4. Caso o usuário não esteja autenticado, a página home renderiza uma mensagem de erro
+5. O usuário pode, a partir da página home, acessar o estoque de livros
+6. Na página de estoque, o usuário autenticado pode cadastrar, editar e deletar livros, além de ver toda a listagem de livros
+7. Caso o usuário não esteja autenticado, a página estoque renderiza uma mensagem de erro
+8. O usuário não-autenticado pode acessar todo o catálogo de livros clicando na lupa do header
+9. O usuário pode digitar o título de um livro e clicar na lupa do header, e será redirecionado para a página de catálogo com o resultado da busca e o catálogo completo abaixo
+
 ## ⚙ Tecnologias Utilizadas
 
 - ![image](https://user-images.githubusercontent.com/77807360/165656549-252a14bc-0e1b-468d-bf27-49357a1f37c0.png)
 - ![image](https://user-images.githubusercontent.com/77807360/165656627-cf86aa3d-ddb8-4cec-ad7f-58f7badad065.png)
-- ![image](https://user-images.githubusercontent.com/77807360/165657471-b9beb594-76dc-4694-9bf6-2b33d3a9ccf6.png)
-- ![image](https://user-images.githubusercontent.com/77807360/165657717-40fa2c5b-8457-4114-82b2-ed71175d7001.png)
-- ![image](https://user-images.githubusercontent.com/77807360/165657816-0fbceebc-a787-44fa-a89d-ea7c098dfe5f.png)
-- ![image](https://user-images.githubusercontent.com/77807360/165657897-caacb60c-9c74-46ec-a3bd-54fc020c48ad.png)
 - ![image](https://user-images.githubusercontent.com/77807360/165658002-8b3f07ac-845b-4337-8fdd-4f391fcb3f93.png)
+- ![image](https://user-images.githubusercontent.com/77807360/165657471-b9beb594-76dc-4694-9bf6-2b33d3a9ccf6.png)
+- ![image](https://user-images.githubusercontent.com/77807360/165657897-caacb60c-9c74-46ec-a3bd-54fc020c48ad.png)
+- ![image](https://user-images.githubusercontent.com/77807360/165657717-40fa2c5b-8457-4114-82b2-ed71175d7001.png)
+  
+- Bibliotecas
+  - React Router Dom
+  - Axios
+  - React Hook Form
+  - Yup
+  - React Icons e Chakra Icons
 
 ## 💻 Equipe de Desenvolvedores
 
