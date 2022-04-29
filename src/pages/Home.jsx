@@ -1,14 +1,14 @@
 import {
+    Center,
+    Wrap,
     Avatar,
-    Flex,
     Box,
+    Flex,
     Text,
     Button,
     keyframes
 } from '@chakra-ui/react';
-import Container from '../components/Layouts/Container';
 import { useNavigate } from 'react-router-dom';
-
 
 function Home() {
     const user_fullName = localStorage.getItem('name');
@@ -31,17 +31,18 @@ function Home() {
 
     return (
         <>
-        <Container>
-        <Flex display="flex" alignItems="center">
-            <Flex alignItems="center">
+        <Center py={6}>
+            <Wrap spacing='10px' align='center'>
                 <Box
-                h={'350px'}
-                w={'500px'}
+                h={{ sm: '476px', md: '20rem' }}
+                w={{ sm: '100%', md: '450px' }}
+                direction={{ base: 'column', md: 'row' }}
                 bg={'purple.100'}
                 boxShadow={'2xl'}
                 rounded={'md'}
                 p={6}
                 overflow={'hidden'}
+                alignItems="center"
                 >
                     <Text 
                     fontFamily={'sen'}
@@ -59,11 +60,10 @@ function Home() {
                             Acessar o estoque
                     </Button>
                 </Box>
-            </Flex>
-            <Flex>
                 <Box
-                    h={'350px'}
-                    w={'200px'}
+                    h={{ sm: '350px', md: '20rem' }}
+                    w={{ sm: '100%', md: '200px' }}
+                    direction={{ base: 'column', md: 'row' }}
                     bg={'purple.100'}
                     boxShadow={'2xl'}
                     rounded={'md'}
@@ -107,13 +107,13 @@ function Home() {
                             color={'white'}
                             onClick={() => navigate('/user')}
                             >
-                                Atualizar Dados
+                            Atualizar Dados
                         </Button>
                     </Box>
-                </Flex>
-            </Flex>
-        </Container>
-    </>);
+                </Wrap>
+            </Center>
+        </>
+    );
 }
 
 export default Home;
