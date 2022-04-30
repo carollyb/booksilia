@@ -55,7 +55,7 @@ function BookStock() {
             isClosable: true,
         });
         setUpdateTable((x) => {return x + 1})
-        setBookData(book)
+        
         } catch (error) {
             toast({
                 title: 'O registro não pôde ser criado',
@@ -66,6 +66,7 @@ function BookStock() {
             })
             setLoading(false)
         }
+        setBookData(book)
     }
 
     async function handleEdit(e) {

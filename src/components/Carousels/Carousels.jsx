@@ -4,9 +4,10 @@ import 'swiper/css/bundle';
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Flex, Image } from '@chakra-ui/react';
-import { Pagination, Navigation } from "swiper";
+import SwiperCore, { Pagination, Navigation, Autoplay } from "swiper";
 
 const carouselComponent = () => {
+    SwiperCore.use([Autoplay])
     return (
         <Flex
         w={{base: '270px', md: '500px', lg: '1500px'}}
@@ -15,6 +16,11 @@ const carouselComponent = () => {
         align={'center'}
         overflow={'hidden'}>
             <Swiper
+            loop={true}
+            autoplay={{
+                delay: 2000
+            }
+            }
             pagination={{
             type: "progressbar"
             }}
